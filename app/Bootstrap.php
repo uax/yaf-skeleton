@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
+use App\Services\Register;
 use Yaf\Bootstrap_Abstract as YafBootstrap;
 use Yaf\Dispatcher;
-use \App\Services\Register;
 
 /**
  * Class Bootstrap.
@@ -27,8 +27,6 @@ class Bootstrap extends YafBootstrap
 
     /**
      * 项目基本初始化操作.
-     *
-     * @param Dispatcher $dispatcher
      */
     public function _initProject(Dispatcher $dispatcher)
     {
@@ -49,8 +47,7 @@ class Bootstrap extends YafBootstrap
     }
 
     /**
-     * init container
-     * @param Dispatcher $dispatcher
+     * init container.
      */
     public function _initContainer(Dispatcher $dispatcher)
     {
@@ -61,9 +58,7 @@ class Bootstrap extends YafBootstrap
     }
 
     /**
-     * init Facade
-     *
-     * @param Dispatcher $dispatcher
+     * init Facade.
      */
     public function _initFacade(Dispatcher $dispatcher)
     {
@@ -72,8 +67,6 @@ class Bootstrap extends YafBootstrap
     }
 
     /**
-     * @param \Yaf\Dispatcher $dispatcher
-     *
      * @throws \App\Exceptions\ErrorException
      */
     public function _initConfig(Dispatcher $dispatcher)
@@ -83,8 +76,6 @@ class Bootstrap extends YafBootstrap
 
     /**
      * 日志启动器.
-     *
-     * @param Dispatcher $dispatcher
      */
     public function _initLogger(Dispatcher $dispatcher)
     {
@@ -99,12 +90,10 @@ class Bootstrap extends YafBootstrap
 
     /**
      * 注册插件.
-     *
-     * @param Dispatcher $dispatcher
      */
     public function _initPlugins(Dispatcher $dispatcher)
     {
-        if ($this->env() === 'dev') {
+        if (Yaf\ENVIRON === 'dev') {
             // 只有在 dev 环境下可以在 URL 里模拟产品环境返回值
             if (Request::get('__env') == 'pro') {
                 putenv('APP_ENV=pro');
